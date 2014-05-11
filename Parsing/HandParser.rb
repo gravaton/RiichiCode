@@ -121,6 +121,11 @@ class MahjongHand
 		return handtocheck.ready
 	end
 
+	def tenpai
+		readies = self.ready
+		return readies
+	end
+
 	def totenpai
 		possiblehands = Array.new
 		@pool.each { |tile|
@@ -148,6 +153,13 @@ class MahjongHand
 
 	end
 
+	def to_s
+		retval = ""
+		@pool.each { |tile| retval = retval + tile.to_s }
+		return retval
+	end
+
+	protected
 	def ready
 		# This is now designed to work on a 13 or 14 tile hand, based on the Shanten number.
 
@@ -218,14 +230,8 @@ class MahjongHand
 			readyhands = readyhands + item.ready
 		}
 		return readyhands
-
 	end
 
-	def to_s
-		retval = ""
-		@pool.each { |tile| retval = retval + tile.to_s }
-		return retval
-	end
 end
 
 class ReadyHand < MahjongHand
@@ -239,9 +245,10 @@ end
 #tim = MahjongHand.new("EE1m1m1m2m3m4m5p5p5p7o8o9o")
 #tim = MahjongHand.new("EEE1m1m2m3m4m5m6m7o8o9oK")
 #tim = MahjongHand.new("EE1m1m1m2m2m2m3m3m3m4m4m4m")
-tim = MahjongHand.new("EE1m1m1m2o2o2o3p3p3p4m4m4m")
+#tim = MahjongHand.new("EE1m1m1m2o2o2o3p3p3p4m4m4m")
 #tim = MahjongHand.new("E1m1m1m2o2o2o3p3p3p4m4m4mK")
-output = tim.totenpai
+tim = MahjongHand.new("1m1m1m2m3m4m5m6m7m8m9m9m9m")
+output = tim.tenpai
 print "----OUTPUT----\n"
 output.each { |item|
 	print "---------NEW HAND----------\n"
